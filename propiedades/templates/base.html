@@ -85,12 +85,32 @@
               <a class="nav-link" href="agendar.html">Agendar </a>
             </li>
 
+            
+            {% if user.is_authenticated %}
+            
             <li class="nav-item">
-              <a href="ingresar.html" class="btn btn-b-n">
+              <a class="nav-link" href=#> Antonia!</a>
+ 
+            </li>
+
+            <li class="nav-item">
+              <a href="{% url 'logout' %}" class="btn btn-b-n">
+                <i class="bi bi-person-circle" style="margin-right: 5px;"></i
+                >Cerrar Sesión
+              </a>
+            </li>
+        
+
+            {% else %}
+
+            <li class="nav-item">
+              <a href="{% url 'registrarse' %}" class="btn btn-b-n">
                 <i class="bi bi-person-circle" style="margin-right: 5px;"></i
                 >Ingresar
               </a>
             </li>
+            {% endif %}
+
                    
 
           </ul>

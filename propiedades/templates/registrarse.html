@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3>¡Regístrate aquí!</h3>
+<a href="{% url 'registrarse' %}"><p>Crea una cuenta para acceder a nuestra plataforma</a></p>
+
+{{error}}
+
+<form action="/registrarse/" method="POST"> <!-- el action buscará una URL de nombre signup, 
+    hay que crearla porque no existe -->
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button type="submit">
+        Registarse e Ingresar</button>
+
+</form>
+{% endblock %}
