@@ -50,7 +50,7 @@
           <span></span>
           <span></span>
         </button>
-        <a class="navbar-brand text-brand" href="index.html">
+        <a class="navbar-brand text-brand" href="{% url 'home' %}">
           <img
             src="{% static 'assets/img/toñito_logo.png' %}"
             alt="Logo"
@@ -78,7 +78,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contacto</a>
+              <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
             </li>
 
             <li class="nav-item">
