@@ -88,23 +88,22 @@
             
             {% if user.is_authenticated %}
             
-            <li class="nav-item">
-              <a class="nav-link" href=#> Antonia!</a>
- 
-            </li>
-
-            <li class="nav-item">
-              <a href="{% url 'logout' %}" class="btn btn-b-n">
-                <i class="bi bi-person-circle" style="margin-right: 5px;"></i
-                >Cerrar Sesión
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ¡Hola, {{ user.username }}!
               </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                <li><a class="dropdown-item" href="#">Agendar Visita</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+              </ul>
             </li>
         
 
             {% else %}
 
             <li class="nav-item">
-              <a href="{% url 'registrarse' %}" class="btn btn-b-n">
+              <a href="{% url 'ingresar' %}" class="btn btn-b-n">
                 <i class="bi bi-person-circle" style="margin-right: 5px;"></i
                 >Ingresar
               </a>
