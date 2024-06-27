@@ -21,5 +21,5 @@ from propiedades import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('slide-1/', views.slide1, name='slide_1'),
+    path('sobre_nosotros/', views.sobre_nosotros, name='sobre_nosotros'),
 ]

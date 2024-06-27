@@ -4,5 +4,5 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'home.html')
 
-def slide1(request):
-    return render(request, 'slide-1.jpg')
+def sobre_nosotros(request):
+    return render(request, 'sobre-nosotros.html')
