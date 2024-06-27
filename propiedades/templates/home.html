@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="position-relative">
+        <img src="{% static 'assets/img/slide-1.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <div class="intro-body">
+            <p class="intro-title-top">
+              San Miguel, <br />
+              Santiago
+            </p>
+            <h1 class="intro-title mb-4">
+              <span class="color-b">921 </span> Varas Mena
+              <br />
+            </h1>
+            <p class="intro-subtitle intro-price">
+              <a href="property-single.html">
+                <span class="price-a">Arriendo | $ 400.000</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="position-relative">
+        <img src="{% static 'assets/img/slide-2.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <div class="intro-body">
+            <p class="intro-title-top">
+              La Florida, <br />
+              Santiago
+            </p>
+            <h1 class="intro-title mb-4">
+              <span class="color-b">9423 </span> Av. La Florida <br />
+            </h1>
+            <p class="intro-subtitle intro-price">
+              <a href="av-laflorida.html">
+                <span class="price-a">Venta | UF $ 12.000</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="position-relative">
+        <img src="{% static 'assets/img/slide-1.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <div class="intro-body">
+            <p class="intro-title-top">
+              Serrano, <br />
+              Santiago
+            </p>
+            <h1 class="intro-title mb-4">
+              <span class="color-b">654 </span> Santiago <br />
+            </h1>
+            <p class="intro-subtitle intro-price">
+              <a href="av-laflorida.html">
+                <span class="price-a">Venta | UF $ 12.000</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,284 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <!--#region Header-->
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Toñito's</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <link href="{% static 'assets/img/tonito_logo.png' %}" rel="icon" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
+
+    <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+  </head>
+  <!--#endregion-->
+
+ 
+  <body>
+    <!-- #region ======= Navbar ======= -->
+    <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+      <div class="container">
+        <button
+          class="navbar-toggler collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarDefault"
+          aria-controls="navbarDefault"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <a class="navbar-brand text-brand" href="index.html">
+          <img
+            src="{% static 'assets/img/toñito_logo.png' %}"
+            alt="Logo"
+            class="img-thumbnail"
+            style="width: 50px; height: auto"
+          />
+          Toñi<span class="color-b">To's</span></a
+        >
+
+        <div
+          class="navbar-collapse collapse justify-content-center"
+          id="navbarDefault"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Inicio</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">Sobre Nosotros</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="property-grid.html">Propiedades</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contacto</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="agendar.html">Agendar </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="ingresar.html" class="btn btn-b-n">
+                <i class="bi bi-person-circle" style="margin-right: 5px;"></i
+                >Ingresar
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <button
+          type="button"
+          class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo01"
+        >
+          <i class="bi bi-search" style="margin-right: 5px;"></i> Buscar
+        </button>
+            </li>
+          
+
+          </ul>
+       
+    </nav>
+   <!-- #endregion -->
+
+   {% block content%}
+    {% endblock %}
+
+    <!-- #region ======= Footer ======= -->
+     <section class="section-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <div class="widget-a">
+              <div class="w-header-a">
+                <h3 class="w-title-a text-brand">Toñito's</h3>
+              </div>
+              <div class="w-body-a">
+                <p class="w-text-a color-text-a">
+                  Nuestra corredora se compromete a facilitar transacciones
+                  inmobiliarias de manera transparente y profesional, ofreciendo
+                  un servicio excepcional a nuestros clientes y promoviendo la
+                  inversión responsable en el sector. Aspiramos a liderar el
+                  mercado inmobiliario, destacándonos por nuestra integridad,
+                  experiencia y dedicación a la satisfacción del cliente
+                </p>
+              </div>
+              <div class="w-footer-a">
+                <ul class="list-unstyled">
+                  <li class="color-a">
+                    <span class="color-text-a">Email </span>
+                    toñitos@corredora.com
+                  </li>
+                  <li class="color-a">
+                    <span class="color-text-a">Teléfono </span> +569 3564 45234
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4 section-md-t3">
+            <div class="widget-a">
+              <div class="w-header-a">
+                <h3 class="w-title-a text-brand">Nuestra Empresa</h3>
+              </div>
+              <div class="w-body-a">
+                <div class="w-body-a">
+                  <ul class="list-unstyled">
+                    <li class="item-list-a">
+                      <i class="bi bi-chevron-right"></i>
+                      <a href="#">Ubicación</a>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="bi bi-chevron-right"></i>
+                      <a href="#">Términos y condiciones</a>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="bi bi-chevron-right"></i>
+                      <a href="#">Representantes</a>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="bi bi-chevron-right"></i>
+                      <a href="#">Trabaja con nosotros</a>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="bi bi-chevron-right"></i>
+                      <a href="#">Afiliados</a>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="bi bi-chevron-right"></i>
+                      <a href="#">Política de privacidad</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4 section-md-t3">
+            <div class="widget-a">
+              <div class="w-header-a">
+                <h3 class="w-title-a text-brand">Regiones</h3>
+              </div>
+              <div class="w-body-a">
+                <ul class="list-unstyled">
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i>
+                    <a href="#">Sede Arica</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i>
+                    <a href="#">Sede La Serena</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i>
+                    <a href="#">Sede Santiago</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i>
+                    <a href="#">Sede Viña del Mar</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i>
+                    <a href="#">Sede Valdivia</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i>
+                    <a href="#">Sede Punta Arenas</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <nav class="nav-footer">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="#">Inicio</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">Sobre Nosotros</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">Propiedades</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">Blog</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">Contacto</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="socials-a">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="bi bi-facebook" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="bi bi-twitter" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="bi bi-instagram" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="bi bi-linkedin" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="copyright-footer">
+              <div class="credits">
+                © Copyright <a href="index.html">Toñito's</a> Todos los derechos reservados.
+              </div>
+            </div>
+            <div class="credits">
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- #endregion -->
+  </body>
+</html>
