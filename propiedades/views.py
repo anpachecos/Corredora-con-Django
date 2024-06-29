@@ -7,6 +7,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import UserRegistrationForm
+from .forms import PropiedadForm
 
 
 
@@ -51,5 +52,14 @@ def signout(request):
     return redirect('home')
 
 
+
 def agregar_propiedad(request):
-    return render(request, 'agregar_propiedad.html')
+    if request.method == 'POST':
+        form = PropiedadForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ruta_a_tu_lista_de_propiedades')  # Redirige a donde quieras después de agregar una propiedad
+    else:
+        form = PropiedadForm()
+
+    return render(request, 'agregar_propiedad.html', {'form': form})
