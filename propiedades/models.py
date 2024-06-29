@@ -38,28 +38,3 @@ class Propiedad(models.Model):
     precio = models.DecimalField(max_digits=15, decimal_places=2)
     valor_uf = models.DecimalField(max_digits=15, decimal_places=2, null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        # Aquí puedes usar una API para calcular el valor UF basado en el precio
-        if not self.valor_uf:
-            self.valor_uf = self.calcular_valor_uf(self.precio)
-        super().save(*args, **kwargs)
-
-    def calcular_valor_uf(self, precio_clp):
-        # Implementar lógica para calcular el valor UF basado en una API
-        # Ejemplo:
-        # valor_uf = obtener_valor_uf_desde_api(precio_clp)
-        # return valor_uf
-        pass
-
-    def __str__(self):
-        return f'{self.direccion_calle} {self.direccion_numero}, {self.comuna.nombre}'
-
-# Implementación de la función para obtener valor UF desde una API
-def obtener_valor_uf_desde_api(precio_clp):
-    # Aquí puedes hacer una llamada a una API externa para obtener el valor UF
-    # Ejemplo:
-    # response = requests.get('url_de_la_api')
-    # data = response.json()
-    # valor_uf = data['valor_uf']
-    # return valor_uf
-    pass

@@ -90,15 +90,18 @@
             
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                ¡Hola, {{ user.username }}!
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
-                <li><a class="dropdown-item" href="#">Agendar Visita</a></li>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
-              </ul>
-            </li>
-        
+                  ¡Hola, {{ user.username }}!
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                  <li><a class="dropdown-item" href="#">Agendar Visita</a></li>
+                  {% if user.is_staff %}
+                  <li><a class="dropdown-item" href="{% url 'agregar_propiedad' %}">Agregar Propiedad</a></li>
+                  {% endif %}
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                </ul>
+              </li>
+          
 
             {% else %}
 

@@ -50,3 +50,6 @@ def signout(request):
     logout(request)
     return redirect('home')
 
+
+def agregar_propiedad(request):
+    return render(request, 'agregar_propiedad.html')

@@ -1,4 +1,4 @@
-.carousel-caption {
+.carousel-caption { 
   position: absolute;
   top: 0;
   left: 0;
@@ -10,6 +10,10 @@
   color: white;
   text-align: left;
   background: rgba(0, 0, 0, 0.5); /* Optional: adds a dark overlay for better text readability */
+  bottom: 10%; /* Puedes ajustar este valor según lo necesites */
+  transform: translateY(0%);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .intro-content .intro-body {
