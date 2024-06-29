@@ -2,5 +2,25 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+   
     <button type="submit">Guardar</button>
-</form>
+  </form>
+  
+  <script>
+    document.getElementById('id_region').addEventListener('change', function() {
+      var regionId = this.value;
+      fetch(`/api/comunas/${regionId}/`)
+        .then(response => response.json())
+        .then(data => {
+          var comunaSelect = document.getElementById('id_comuna');
+          comunaSelect.innerHTML = '<option value="">Seleccione una comuna</option>';
+          data.comunas.forEach(comuna => {
+            var option = document.createElement('option');
+            option.value = comuna.id;
+            option.textContent = comuna.nombre;
+            comunaSelect.appendChild(option);
+          });
+        });
+    });
+  </script>
+  

@@ -6,9 +6,10 @@ class Region(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class Comuna(models.Model):
     nombre = models.CharField(max_length=100)
-    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='comunas')
 
     def __str__(self):
         return self.nombre
@@ -24,9 +25,10 @@ class Propiedad(models.Model):
         ('venta', 'Venta'),
         ('arriendo', 'Arriendo'),
     ]
-
+    propiedad_id = models.AutoField(primary_key=True, default=1)
     direccion_calle = models.CharField(max_length=255)
     direccion_numero = models.CharField(max_length=10)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, default=1)  
     comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE)
     tipo = models.ForeignKey(TipoPropiedad, on_delete=models.CASCADE)
     estado = models.CharField(max_length=10, choices=ESTADO_CHOICES)
@@ -38,3 +40,5 @@ class Propiedad(models.Model):
     precio = models.DecimalField(max_digits=15, decimal_places=2)
     valor_uf = models.DecimalField(max_digits=15, decimal_places=2, null=True, blank=True)
 
+    def __str__(self):
+        return f"{self.direccion_calle} {self.direccion_numero}, {self.comuna}, {self.region}"

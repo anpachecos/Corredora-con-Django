@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404    
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -8,8 +8,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import UserRegistrationForm
 from .forms import PropiedadForm
-
-
+from .models import Propiedad
+from django.http import JsonResponse
+from .models import Comuna
 
 def ingresar(request):
     if request.method == 'POST':
@@ -53,13 +54,18 @@ def signout(request):
 
 
 
-def agregar_propiedad(request):
+def agregar_propiedad(request, propiedad_id=None):
     if request.method == 'POST':
         form = PropiedadForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('ruta_a_tu_lista_de_propiedades')  # Redirige a donde quieras después de agregar una propiedad
+            propiedad = form.save()
+            # Lógica adicional después de guardar la propiedad
+            return redirect('agregar_propiedad')  # Reemplaza 'ruta_hacia_la_vista' con la ruta correcta
     else:
         form = PropiedadForm()
 
     return render(request, 'agregar_propiedad.html', {'form': form})
+
+def comunas_por_region(request, region_id):
+    comunas = Comuna.objects.filter(region_id=region_id).values('id', 'nombre')
+    return JsonResponse({'comunas': list(comunas)})

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Propiedad
+from .models import Propiedad, Region, Comuna
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(label='Email')
@@ -27,4 +27,12 @@ class PropiedadForm(forms.ModelForm):
     class Meta:
         model = Propiedad
         fields = '__all__'
-        exclude = ['valor_uf']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Filtrar las comunas si ya se ha seleccionado una región
+        if self.instance.region:
+            self.fields['comuna'].queryset = Comuna.objects.filter(region=self.instance.region).order_by('nombre')
+        else:
+            self.fields['comuna'].queryset = Comuna.objects.none()  # Mostrar ninguna comuna por defecto

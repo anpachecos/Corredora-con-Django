@@ -26,6 +26,7 @@ urlpatterns = [
     path('registrarse/', views.registrarse, name='registrarse'),
     path('signout/', views.signout, name='logout'),
     path('ingresar/', views.ingresar, name='ingresar'),
-    path('agregar_propiedad/', views.agregar_propiedad, name='agregar_propiedad')
+    path('agregar_propiedad/', views.agregar_propiedad, name='agregar_propiedad'),
+    path('api/comunas/<int:region_id>/', views.comunas_por_region, name='api_comunas_por_region'),
 
 ]
