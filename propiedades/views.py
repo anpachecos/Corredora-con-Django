@@ -43,6 +43,13 @@ def registrarse(request):
 def home(request):
     return render(request, 'home.html')
 
+def agendar_visita(request):
+    return render(request, 'agendar_visita.html')
+
+def property_grid(request):
+    return render(request, 'property_grid.html')
+
+
 def sobre_nosotros(request):
     return render(request, 'sobre-nosotros.html')
 

@@ -74,7 +74,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="property-grid.html">Propiedades</a>
+              <a class="nav-link" href="{% url 'property_grid' %}">Propiedades</a>
             </li>
 
             <li class="nav-item">
@@ -82,7 +82,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="agendar.html">Agendar </a>
+              <a class="nav-link" href="{% url 'agendar_visita' %}">Agendar </a>
             </li>
 
             
@@ -98,7 +98,7 @@
                   {% if user.is_staff %}
                   <li><a class="dropdown-item" href="{% url 'agregar_propiedad' %}">Agregar Propiedad</a></li>
                   <li><a class="dropdown-item" href="{% url 'listar_propiedad' %}">Listar Propiedades</a></li>
-
+                  <li><a class="dropdown-item" href="{% url 'listar_propiedad' %}">Eliminar Propiedades</a></li>
                   {% endif %}
                   <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                 </ul>

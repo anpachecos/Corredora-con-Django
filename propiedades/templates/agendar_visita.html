@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">Agendar Visita</h1>
+              <p class="color-text-a"> Completa el siguiente formulario para agendar la visita a tu próximo hogar!</p>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="index.html">Inicio</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Agendar
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Contact Single ======= -->
+    <section class="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-container">
+                <div class="row gy-3 overflow-hidden">
+                    <div class="col-12">
+                      <form id="appointmentForm">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Nombre Completo"
+                             pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" required />
+                            <label for="fullName" class="form-label">Nombre Completo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required />
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Número de Teléfono" pattern="[0-9]{9,15}" required />
+                            <label for="phone" class="form-label">Número de Teléfono</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-control" name="property" id="property" required>
+                                <option value="" disabled selected>Seleccione una propiedad</option>
+                              
+                            </select>
+                            <label for="property" class="form-label">Propiedad</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" name="date" id="date" required />
+                            <label for="date" class="form-label">Fecha Preferida</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="time" class="form-control" name="time" id="time" required />
+                            <label for="time" class="form-label">Hora Preferida</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" name="comments" id="comments" placeholder="Comentarios Adicionales" rows="4"></textarea>
+                            <label for="comments" class="form-label">Comentarios Adicionales</label>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Acepto los <a href="#">Términos y Condiciones</a></label>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="checkbox" id="consent" name="consent">
+                            <label for="consent">Deseo recibir información adicional y promociones</label>
+                        </div>
+                        <div id="successMessage" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                          ¡Tu visita ha sido agendada correctamente!
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                        <button type="submit" class="btn btn-b">Agendar Visita</button>
+                        <p class="warnings" id="warnings"></p>
+                        
+                      
+                    </form>
+                    
+                    
+          </div>
+        </div>
+      </div>
+    </section><!-- End Contact Single-->
+
+  </main><!-- End #main -->
+  {% endblock %}    
