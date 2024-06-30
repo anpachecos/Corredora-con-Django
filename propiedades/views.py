@@ -6,26 +6,23 @@ from django.contrib.auth import login, logout
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .forms import UserRegistrationForm
-from .forms import PropiedadForm
-from .models import Propiedad
+from .forms import UserRegistrationForm, PropiedadForm
+from .models import Propiedad, Comuna
 from django.http import JsonResponse
-from .models import Comuna
 from django.views.decorators.http import require_POST
 
 def ingresar(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
+    if request.method == "POST":
+        username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, email=email, password=password)
-
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home') 
+            return redirect('home')
         else:
-            messages.error(request, 'Credenciales inválidas. Inténtalo de nuevo.')
-
-    return render(request, 'ingresar.html')
+            return render(request, 'ingresar.html', {'error': 'Usuario o contraseña incorrectos'})
+    else:
+        return render(request, 'ingresar.html')
 
 def registrarse(request):
     if request.method == 'POST':
@@ -39,7 +36,6 @@ def registrarse(request):
 
     return render(request, 'registrarse.html', {'form': form})
 
-
 def home(request):
     return render(request, 'home.html')
 
@@ -48,7 +44,6 @@ def agendar_visita(request):
 
 def property_grid(request):
     return render(request, 'property_grid.html')
-
 
 def sobre_nosotros(request):
     return render(request, 'sobre-nosotros.html')

@@ -29,54 +29,9 @@
             {% endif %}
             <form method="post" action="{% url 'ingresar' %}">
                 {% csrf_token %}
-                <div class="row gy-3 overflow-hidden">
-                    <div class="col-12">
-                        <div class="form-floating mb-3">
-                            <input
-                                type="email"
-                                class="form-control"
-                                name="email"
-                                id="email"
-                                placeholder="name@example.com"
-                                required
-                            />
-                            <label for="email" class="form-label">Email</label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-floating mb-3">
-                            <input
-                                type="password"
-                                class="form-control"
-                                name="password"
-                                id="password"
-                                value=""
-                                placeholder="Password"
-                            />
-                            <label for="password" class="form-label">Contraseña</label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                value=""
-                                name="remember_me"
-                                id="remember_me"
-                            />
-                            <label class="form-check-label text-secondary" for="remember_me">
-                                Mantener sesión iniciada
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="d-grid">
-                            <button class="btn btn-primary btn-lg" type="submit">Ingresar</button>
-                        </div>
-                    </div>
-                    <p class="warnings" id="warnings"></p>
-                </div>
+                <input type="text" class="campo" name="username" placeholder="Nombre de usuario" required>
+                <input type="password" class="campo" name="password" placeholder="Contraseña" required>
+                <button type="submit" class="boton">Iniciar Sesión</button>
             </form>
 
             <div class="row">
