@@ -45,6 +45,7 @@ class Propiedad(models.Model):
     estacionamiento_cantidad = models.PositiveIntegerField(null=True, blank=True)
     precio = models.DecimalField(max_digits=15, decimal_places=2)
     valor_uf = models.DecimalField(max_digits=15, decimal_places=2, null=True, blank=True)
+    imagen = models.ImageField(upload_to='propiedades', null=True, blank=True)
 
     def __str__(self):
         return f"{self.direccion_calle} {self.direccion_numero}, {self.comuna}, {self.region}"
