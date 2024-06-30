@@ -31,5 +31,7 @@ urlpatterns = [
     path('listar_propiedad', views.listar_propiedad, name='listar_propiedad'),
     path('propiedades/eliminar/<int:propiedad_id>/', views.eliminar_propiedad, name='eliminar_propiedad'),
     path('property_grid', views.property_grid, name='property_grid'),
-    path('agendar_visita.html', views.agendar_visita, name='agendar_visita')
+    path('agendar_visita.html', views.agendar_visita, name='agendar_visita'),
+    
+    path('api/comunas/', views.get_comunas_por_region, name='get_comunas_por_region'),
 ]

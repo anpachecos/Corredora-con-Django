@@ -59,16 +59,30 @@ def listar_propiedad(request):
     propiedades = Propiedad.objects.all()
     return render(request, 'listar_propiedad.html', {'propiedades': propiedades})
 
-def agregar_propiedad(request, propiedad_id=None):
+def agregar_propiedad(request):
     if request.method == 'POST':
-        form = PropiedadForm(request.POST)
+        form = PropiedadForm(request.POST, request.FILES)
         if form.is_valid():
             propiedad = form.save()
-            return redirect('agregar_propiedad') 
+            mensaje = 'Propiedad agregada correctamente!'
+            form = PropiedadForm()  # Limpiar el formulario para un nuevo ingreso
+        else:
+            mensaje = 'Ha ocurrido un error. Verifica los datos ingresados.'
     else:
         form = PropiedadForm()
+        mensaje = None  # No mostrar ningún mensaje inicialmente
+    
+    context = {
+        'form': form,
+        'mensaje': mensaje,
+    }
+    return render(request, 'agregar_propiedad.html', context)
 
-    return render(request, 'agregar_propiedad.html', {'form': form})
+def get_comunas_por_region(request):
+    region_id = request.GET.get('region')
+    comunas = Comuna.objects.filter(region_id=region_id).values('id', 'nombre')
+    return JsonResponse(list(comunas), safe=False)
+
 
 def comunas_por_region(request, region_id):
     comunas = Comuna.objects.filter(region_id=region_id).values('id', 'nombre')

@@ -9,202 +9,41 @@
 <br>
 <br>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="card p-4">
-            <h3 class="card-title text-center mb-4">Agregar Propiedad</h3>
-            <form method="POST">
-                {% csrf_token %}
-                {% if form.errors %}
-                    <div class="alert alert-danger" role="alert">
-                        Por favor, corrige los siguientes errores:
-                        <ul>
-                            {% for field, errors in form.errors.items %}
-                                {% for error in errors %}
-                                    <li>{{ error }}</li>
-                                {% endfor %}
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
+<h2>Ingresar Nueva Propiedad</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Agregar Propiedad">
+</form>
 
-                <div class="mb-3">
-                    {{ form.region.label_tag }}
-                    {{ form.region }}
-                    {% if form.region.errors %}
-                        {% for error in form.region.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.comuna.label_tag }}
-                    <select name="comuna" id="id_comuna" class="form-select">
-                        <option value="">Seleccione una comuna</option>
-                    </select>
-                    {% if form.comuna.errors %}
-                        {% for error in form.comuna.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.direccion_calle.label_tag }}
-                    {{ form.direccion_calle }}
-                    {% if form.direccion_calle.errors %}
-                        {% for error in form.direccion_calle.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.direccion_numero.label_tag }}
-                    {{ form.direccion_numero }}
-                    {% if form.direccion_numero.errors %}
-                        {% for error in form.direccion_numero.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="mb-3">
-                    {{ form.tipo.label_tag }}
-                    {{ form.tipo }}
-                    {% if form.tipo.errors %}
-                        {% for error in form.tipo.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.estado.label_tag }}
-                    {{ form.estado }}
-                    {% if form.estado.errors %}
-                        {% for error in form.estado.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.area.label_tag }}
-                    {{ form.area }}
-                    {% if form.area.errors %}
-                        {% for error in form.area.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.habitaciones.label_tag }}
-                    {{ form.habitaciones }}
-                    {% if form.habitaciones.errors %}
-                        {% for error in form.habitaciones.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.baños.label_tag }}
-                    {{ form.baños }}
-                    {% if form.baños.errors %}
-                        {% for error in form.baños.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.estacionamiento_si_no.label_tag }}
-                    {{ form.estacionamiento_si_no }}
-                    {% if form.estacionamiento_si_no.errors %}
-                        {% for error in form.estacionamiento_si_no.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                
-                <div id="estacionamiento_cantidad_wrapper" class="mb-3" style="display: none;">
-                    {{ form.estacionamiento_cantidad.label_tag }}
-                    {{ form.estacionamiento_cantidad }}
-                    {% if form.estacionamiento_cantidad.errors %}
-                        {% for error in form.estacionamiento_cantidad.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                
-
-                <div class="mb-3">
-                    {{ form.precio.label_tag }}
-                    {{ form.precio }}
-                    {% if form.precio.errors %}
-                        {% for error in form.precio.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="mb-3">
-                    <label for="id_imagen" class="form-label">Imagen de la Propiedad</label>
-                    {{ form.imagen }}
-                    {% if form.imagen.errors %}
-                        {% for error in form.imagen.errors %}
-                            <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Guardar Propiedad</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
 <script>
-    document.getElementById('id_region').addEventListener('change', function() {
-        var regionId = this.value;
-        fetch(`/api/comunas/${regionId}/`)  
+document.addEventListener('DOMContentLoaded', function() {
+    const regionField = document.getElementById('id_region');
+    const comunaField = document.getElementById('id_comuna');
+
+    regionField.addEventListener('change', function() {
+        const regionId = this.value;
+        fetch(`/api/comunas/?region=${regionId}`)
             .then(response => response.json())
             .then(data => {
-                var comunaSelect = document.getElementById('id_comuna');
-                comunaSelect.innerHTML = '<option value="">Seleccione una comuna</option>';
-                data.comunas.forEach(comuna => {
-                    var option = document.createElement('option');
+                comunaField.innerHTML = '';
+                data.forEach(comuna => {
+                    const option = document.createElement('option');
                     option.value = comuna.id;
                     option.textContent = comuna.nombre;
-                    comunaSelect.appendChild(option);
+                    comunaField.appendChild(option);
                 });
             });
     });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var estacionamientoSiNo = document.getElementById('id_estacionamiento_si_no');
-        var estacionamientoCantidadWrapper = document.getElementById('estacionamiento_cantidad_wrapper');
-
-        // Mostrar u ocultar el campo estacionamiento_cantidad al cambiar estacionamiento_si_no
-        estacionamientoSiNo.addEventListener('change', function() {
-            if (this.checked) {
-                estacionamientoCantidadWrapper.style.display = 'block';
-            } else {
-                estacionamientoCantidadWrapper.style.display = 'none';
-            }
-        });
-
-        // Mostrar u ocultar inicialmente según el estado inicial del checkbox
-        if (estacionamientoSiNo.checked) {
-            estacionamientoCantidadWrapper.style.display = 'block';
-        } else {
-            estacionamientoCantidadWrapper.style.display = 'none';
-        }
-    });
+});
 </script>
 
 {% endblock %}

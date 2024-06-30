@@ -26,13 +26,4 @@ class UserRegistrationForm(UserCreationForm):
 class PropiedadForm(forms.ModelForm):
     class Meta:
         model = Propiedad
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        
-        # Filtrar las comunas si ya se ha seleccionado una región
-        if self.instance.region:
-            self.fields['comuna'].queryset = Comuna.objects.filter(region=self.instance.region).order_by('nombre')
-        else:
-            self.fields['comuna'].queryset = Comuna.objects.none()  # Mostrar ninguna comuna por defecto
+        fields = '__all__'  # Puedes cambiar '__all__' por una lista de campos específicos si lo prefieres

@@ -25,7 +25,7 @@ class Propiedad(models.Model):
         ('venta', 'Venta'),
         ('arriendo', 'Arriendo'),
     ]
-    propiedad_id = models.AutoField(primary_key=True, default=1)
+    propiedad_id = models.AutoField(primary_key=True)
     direccion_calle = models.CharField(max_length=255)
     direccion_numero = models.CharField(max_length=10)
     region = models.ForeignKey(
