@@ -11,6 +11,7 @@ from .forms import PropiedadForm
 from .models import Propiedad
 from django.http import JsonResponse
 from .models import Comuna
+from django.views.decorators.http import require_POST
 
 def ingresar(request):
     if request.method == 'POST':
@@ -70,3 +71,9 @@ def agregar_propiedad(request, propiedad_id=None):
 def comunas_por_region(request, region_id):
     comunas = Comuna.objects.filter(region_id=region_id).values('id', 'nombre')
     return JsonResponse({'comunas': list(comunas)})
+
+@require_POST
+def eliminar_propiedad(request, propiedad_id):
+    propiedad = get_object_or_404(Propiedad, pk=propiedad_id)
+    propiedad.delete()
+    return redirect('listar_propiedad')
