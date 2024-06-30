@@ -20,7 +20,7 @@ def ingresar(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')  # Cambia 'home' por la URL a la que deseas redirigir tras el inicio de sesión
+            return redirect('home') 
         else:
             messages.error(request, 'Credenciales inválidas. Inténtalo de nuevo.')
 
@@ -32,7 +32,7 @@ def registrarse(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')  # Cambia 'home' por la URL a la que deseas redirigir tras el registro
+            return redirect('home')  
     else:
         form = UserRegistrationForm()
 
@@ -52,15 +52,16 @@ def signout(request):
     logout(request)
     return redirect('home')
 
-
+def listar_propiedad(request):
+    propiedades = Propiedad.objects.all()
+    return render(request, 'listar_propiedad.html', {'propiedades': propiedades})
 
 def agregar_propiedad(request, propiedad_id=None):
     if request.method == 'POST':
         form = PropiedadForm(request.POST)
         if form.is_valid():
             propiedad = form.save()
-            # Lógica adicional después de guardar la propiedad
-            return redirect('agregar_propiedad')  # Reemplaza 'ruta_hacia_la_vista' con la ruta correcta
+            return redirect('agregar_propiedad') 
     else:
         form = PropiedadForm()
 

@@ -97,6 +97,8 @@
                   <li><a class="dropdown-item" href="#">Agendar Visita</a></li>
                   {% if user.is_staff %}
                   <li><a class="dropdown-item" href="{% url 'agregar_propiedad' %}">Agregar Propiedad</a></li>
+                  <li><a class="dropdown-item" href="{% url 'listar_propiedad' %}">Listar Propiedades</a></li>
+
                   {% endif %}
                   <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                 </ul>

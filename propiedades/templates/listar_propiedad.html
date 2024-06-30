@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listar Propiedades</title>
+</head>
+<body>
+    <h1>Lista de Propiedades</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Dirección</th>
+                <th>Comuna</th>
+                <th>Región</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+                <th>Área</th>
+                <th>Habitaciones</th>
+                <th>Baños</th>
+                <th>Estacionamiento</th>
+                <th>Precio</th>
+                <th>Valor UF</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for propiedad in propiedades %}
+            <tr>
+                <td>{{ propiedad.propiedad_id }}</td>
+                <td>{{ propiedad.direccion_calle }} {{ propiedad.direccion_numero }}</td>
+                <td>{{ propiedad.comuna.nombre }}</td>
+                <td>{{ propiedad.region.nombre }}</td>
+                <td>{{ propiedad.tipo.nombre }}</td>
+                <td>{{ propiedad.get_estado_display }}</td>
+                <td>{{ propiedad.area }}</td>
+                <td>{{ propiedad.habitaciones }}</td>
+                <td>{{ propiedad.banos }}</td>
+                <td>{{ propiedad.estacionamiento_cantidad }}</td>
+                <td>{{ propiedad.precio }}</td>
+                <td>{{ propiedad.valor_uf }}</td>
+                <td>
+                    {% if propiedad.imagen %}
+                        <img src="{{ propiedad.imagen.url }}" alt="Imagen de {{ propiedad.direccion_calle }}" width="100">
+                    {% else %}
+                        No disponible
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
