@@ -120,14 +120,25 @@
                 </div>
 
                 <div class="mb-3">
-                    {{ form.estacionamiento.label_tag }}
-                    {{ form.estacionamiento }}
-                    {% if form.estacionamiento.errors %}
-                        {% for error in form.estacionamiento.errors %}
+                    {{ form.estacionamiento_si_no.label_tag }}
+                    {{ form.estacionamiento_si_no }}
+                    {% if form.estacionamiento_si_no.errors %}
+                        {% for error in form.estacionamiento_si_no.errors %}
                             <div class="text-danger">{{ error }}</div>
                         {% endfor %}
                     {% endif %}
                 </div>
+                
+                <div id="estacionamiento_cantidad_wrapper" class="mb-3" style="display: none;">
+                    {{ form.estacionamiento_cantidad.label_tag }}
+                    {{ form.estacionamiento_cantidad }}
+                    {% if form.estacionamiento_cantidad.errors %}
+                        {% for error in form.estacionamiento_cantidad.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                
 
                 <div class="mb-3">
                     {{ form.precio.label_tag }}
@@ -171,6 +182,28 @@
                     comunaSelect.appendChild(option);
                 });
             });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var estacionamientoSiNo = document.getElementById('id_estacionamiento_si_no');
+        var estacionamientoCantidadWrapper = document.getElementById('estacionamiento_cantidad_wrapper');
+
+        // Mostrar u ocultar el campo estacionamiento_cantidad al cambiar estacionamiento_si_no
+        estacionamientoSiNo.addEventListener('change', function() {
+            if (this.checked) {
+                estacionamientoCantidadWrapper.style.display = 'block';
+            } else {
+                estacionamientoCantidadWrapper.style.display = 'none';
+            }
+        });
+
+        // Mostrar u ocultar inicialmente según el estado inicial del checkbox
+        if (estacionamientoSiNo.checked) {
+            estacionamientoCantidadWrapper.style.display = 'block';
+        } else {
+            estacionamientoCantidadWrapper.style.display = 'none';
+        }
     });
 </script>
 
