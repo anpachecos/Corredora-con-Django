@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Contenido específico del registro de propiedades -->
+
 <br>
 <br>
 <br>
@@ -42,7 +42,6 @@
                     {{ form.comuna.label_tag }}
                     <select name="comuna" id="id_comuna" class="form-select">
                         <option value="">Seleccione una comuna</option>
-                        <!-- Opciones de comunas serán agregadas dinámicamente por JavaScript -->
                     </select>
                     {% if form.comuna.errors %}
                         {% for error in form.comuna.errors %}
@@ -52,15 +51,24 @@
                 </div>
 
                 <div class="mb-3">
-                    {{ form.direccion.label_tag }}
-                    {{ form.direccion }}
-                    {% if form.direccion.errors %}
-                        {% for error in form.direccion.errors %}
+                    {{ form.direccion_calle.label_tag }}
+                    {{ form.direccion_calle }}
+                    {% if form.direccion_calle.errors %}
+                        {% for error in form.direccion_calle.errors %}
                             <div class="text-danger">{{ error }}</div>
                         {% endfor %}
                     {% endif %}
                 </div>
 
+                <div class="mb-3">
+                    {{ form.direccion_numero.label_tag }}
+                    {{ form.direccion_numero }}
+                    {% if form.direccion_numero.errors %}
+                        {% for error in form.direccion_numero.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
                 <div class="mb-3">
                     {{ form.tipo.label_tag }}
                     {{ form.tipo }}
@@ -142,7 +150,7 @@
 <script>
     document.getElementById('id_region').addEventListener('change', function() {
         var regionId = this.value;
-        fetch(`/api/comunas/${regionId}/`)  // Asegúrate de que la URL coincida con tu endpoint de API
+        fetch(`/api/comunas/${regionId}/`)  
             .then(response => response.json())
             .then(data => {
                 var comunaSelect = document.getElementById('id_comuna');

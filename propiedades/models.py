@@ -28,7 +28,13 @@ class Propiedad(models.Model):
     propiedad_id = models.AutoField(primary_key=True, default=1)
     direccion_calle = models.CharField(max_length=255)
     direccion_numero = models.CharField(max_length=10)
-    region = models.ForeignKey(Region, on_delete=models.CASCADE, default=1)  
+    region = models.ForeignKey(
+        Region,
+        on_delete=models.CASCADE,
+        blank=True,  # Permite que el campo sea opcional
+        null=True,   # Permite que el campo sea nulo en la base de datos
+        verbose_name='Región'  # Nombre más descriptivo para el formulario
+    )
     comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE)
     tipo = models.ForeignKey(TipoPropiedad, on_delete=models.CASCADE)
     estado = models.CharField(max_length=10, choices=ESTADO_CHOICES)
