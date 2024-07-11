@@ -1,60 +1,142 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Listar Propiedades</title>
-</head>
-<body>
-    <h1>Lista de Propiedades</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Dirección</th>
-                <th>Comuna</th>
-                <th>Región</th>
-                <th>Tipo</th>
-                <th>Estado</th>
-                <th>Área</th>
-                <th>Habitaciones</th>
-                <th>Baños</th>
-                <th>Estacionamiento</th>
-                <th>Precio</th>
-                <th>Valor UF</th>
-                <th>Imagen</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for propiedad in propiedades %}
-            <tr>
-                <td>{{ propiedad.propiedad_id }}</td>
-                <td>{{ propiedad.direccion_calle }} {{ propiedad.direccion_numero }}</td>
-                <td>{{ propiedad.comuna.nombre }}</td>
-                <td>{{ propiedad.region.nombre }}</td>
-                <td>{{ propiedad.tipo.nombre }}</td>
-                <td>{{ propiedad.get_estado_display }}</td>
-                <td>{{ propiedad.area }}</td>
-                <td>{{ propiedad.habitaciones }}</td>
-                <td>{{ propiedad.banos }}</td>
-                <td>{{ propiedad.estacionamiento_cantidad }}</td>
-                <td>{{ propiedad.precio }}</td>
-                <td>{{ propiedad.valor_uf }}</td>
-                <td>
-                    {% if propiedad.imagen %}
-                        <img src="{{ propiedad.imagen.url }}" alt="Imagen de {{ propiedad.direccion_calle }}" width="100">
-                    {% else %}
-                        No disponible
-                    {% endif %}
-                </td>
-                <td>
-                    <form method="post" action="{% url 'eliminar_propiedad' propiedad.propiedad_id %}">
-                        {% csrf_token %}
-                        <button type="submit">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h2>Lista de Propiedades</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Dirección</th>
+            <th>Comuna</th>
+            <th>Región</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Área</th>
+            <th>Habitaciones</th>
+            <th>Baños</th>
+            <th>Estacionamiento</th>
+            <th>Precio</th>
+            <th>Valor UF</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for propiedad in propiedades %}
+        <tr>
+            <td>{{ propiedad.propiedad_id }}</td>
+            <td>{{ propiedad.direccion_calle }} {{ propiedad.direccion_numero }}</td>
+            <td>{{ propiedad.comuna.nombre }}</td>
+            <td>{{ propiedad.region.nombre }}</td>
+            <td>{{ propiedad.tipo.nombre }}</td>
+            <td>{{ propiedad.get_estado_display }}</td>
+            <td>{{ propiedad.area }}</td>
+            <td>{{ propiedad.habitaciones }}</td>
+            <td>{{ propiedad.banos }}</td>
+            <td>{{ propiedad.estacionamiento_cantidad }}</td>
+            <td>{{ propiedad.precio }}</td>
+            <td>{{ propiedad.valor_uf }}</td>
+            <td>
+                {% if propiedad.imagen %}
+                    <img src="{{ propiedad.imagen.url }}" alt="Imagen de {{ propiedad.direccion_calle }}" width="100">
+                {% else %}
+                    No disponible
+                {% endif %}
+            </td>
+            <td>
+                <button type="button" onclick="toggleForm({{ propiedad.propiedad_id }})">Editar</button>
+                <form method="post" action="{% url 'eliminar_propiedad' propiedad.propiedad_id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        <tr id="form-{{ propiedad.propiedad_id }}" style="display: none;">
+            <td colspan="14">
+                <form method="post" action="{% url 'listar_propiedad' %}" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    {% csrf_token %}
+                    <input type="hidden" name="propiedad_id" value="{{ propiedad.propiedad_id }}">
+                    <div>
+                        <label>Dirección:</label>
+                        <input type="text" name="direccion" value="{{ propiedad.direccion_calle }} {{ propiedad.direccion_numero }}">
+                    </div>
+                    <div>
+                        <label>Comuna:</label>
+                        <input type="text" name="comuna" value="{{ propiedad.comuna.nombre }}">
+                    </div>
+                    <div>
+                        <label>Región:</label>
+                        <input type="text" name="region" value="{{ propiedad.region.nombre }}">
+                    </div>
+                    <div>
+                        <label>Tipo:</label>
+                        <input type="text" name="tipo" value="{{ propiedad.tipo.nombre }}">
+                    </div>
+                    <div>
+                        <label>Estado:</label>
+                        <input type="text" name="estado" value="{{ propiedad.get_estado_display }}">
+                    </div>
+                    <div>
+                        <label>Área:</label>
+                        <input type="text" name="area" value="{{ propiedad.area }}">
+                    </div>
+                    <div>
+                        <label>Habitaciones:</label>
+                        <input type="text" name="habitaciones" value="{{ propiedad.habitaciones }}">
+                    </div>
+                    <div>
+                        <label>Baños:</label>
+                        <input type="text" name="banos" value="{{ propiedad.banos }}">
+                    </div>
+                    <div>
+                        <label>Estacionamiento:</label>
+                        <input type="text" name="estacionamiento" value="{{ propiedad.estacionamiento_cantidad }}">
+                    </div>
+                    <div>
+                        <label>Precio:</label>
+                        <input type="text" name="precio" value="{{ propiedad.precio }}">
+                    </div>
+                    <div>
+                        <label>Valor UF:</label>
+                        <input type="text" name="valor_uf" value="{{ propiedad.valor_uf }}">
+                    </div>
+                    <div>
+                        <label>Imagen:</label>
+                        <input type="file" name="imagen">
+                    </div>
+                    <button type="submit">Guardar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<script>
+function toggleForm(propiedadId) {
+    var form = document.getElementById('form-' + propiedadId);
+    if (form.style.display === 'none') {
+        form.style.display = 'table-row';
+    } else {
+        form.style.display = 'none';
+    }
+}
+</script>
+
+{% endblock %}

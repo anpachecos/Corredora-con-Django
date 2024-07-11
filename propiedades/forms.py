@@ -3,6 +3,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Propiedad, Region, Comuna
 
+
+class PropiedadForm(forms.ModelForm):
+    class Meta:
+        model = Propiedad
+        fields = '__all__'
+
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(label='Email')
     password1 = forms.CharField(

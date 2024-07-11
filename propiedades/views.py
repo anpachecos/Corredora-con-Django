@@ -11,6 +11,14 @@ from .models import Propiedad, Comuna
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 
+
+
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Propiedad
+from .forms import PropiedadForm
+
+
+
 def ingresar(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -57,7 +65,18 @@ def signout(request):
 
 def listar_propiedad(request):
     propiedades = Propiedad.objects.all()
-    return render(request, 'listar_propiedad.html', {'propiedades': propiedades})
+    
+    if request.method == 'POST':
+        propiedad_id = request.POST.get('propiedad_id')
+        propiedad = get_object_or_404(Propiedad, propiedad_id=propiedad_id)
+        form = PropiedadForm(request.POST, instance=propiedad)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_propiedad')
+    else:
+        form = PropiedadForm()
+    
+    return render(request, 'listar_propiedad.html', {'propiedades': propiedades, 'form': form})
 
 def agregar_propiedad(request):
     if request.method == 'POST':
