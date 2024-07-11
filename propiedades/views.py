@@ -63,20 +63,31 @@ def signout(request):
     logout(request)
     return redirect('home')
 
+
 def listar_propiedad(request):
-    propiedades = Propiedad.objects.all()
-    
     if request.method == 'POST':
         propiedad_id = request.POST.get('propiedad_id')
-        propiedad = get_object_or_404(Propiedad, propiedad_id=propiedad_id)
-        form = PropiedadForm(request.POST, instance=propiedad)
-        if form.is_valid():
-            form.save()
-            return redirect('listar_propiedad')
-    else:
-        form = PropiedadForm()
-    
-    return render(request, 'listar_propiedad.html', {'propiedades': propiedades, 'form': form})
+        propiedad = Propiedad.objects.get(pk=propiedad_id)
+
+        # Obtén la comuna del formulario (ejemplo)
+        comuna_nombre = request.POST.get('comuna')
+        
+        # Verifica si ya existe una comuna con ese nombre
+        comuna = get_object_or_404(Comuna, nombre=comuna_nombre)
+
+        # Actualiza los campos según los datos del formulario
+        propiedad.direccion_calle = request.POST.get('direccion', propiedad.direccion_calle)
+        propiedad.comuna = comuna  # Asigna la comuna obtenida
+
+        # Guarda la propiedad actualizada
+        propiedad.save()
+        return redirect('listar_propiedad')  # Redirige a la misma página después de guardar
+
+    # Si no es POST, continuar con el procesamiento normal para mostrar la lista de propiedades
+    propiedades = Propiedad.objects.all()
+    return render(request, 'listar_propiedad.html', {'propiedades': propiedades})
+
+
 
 def agregar_propiedad(request):
     if request.method == 'POST':
