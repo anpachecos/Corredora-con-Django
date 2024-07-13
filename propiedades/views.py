@@ -94,7 +94,7 @@ def agregar_propiedad(request):
         form = PropiedadForm(request.POST, request.FILES)
         if form.is_valid():
             propiedad = form.save()
-            mensaje = 'Propiedad agregada correctamente!'
+            mensaje = messages.success(request, 'Propiedad agregada con éxito.')
             form = PropiedadForm()  # Limpiar el formulario para un nuevo ingreso
         else:
             mensaje = 'Ha ocurrido un error. Verifica los datos ingresados.'
